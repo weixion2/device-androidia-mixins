@@ -12,6 +12,10 @@ I915_FW += i915/compat.ko
 I915_FW += i915/intel_vsec.ko
 I915_FW += i915/i915_ag.ko
 
+I915_EDID_PATH := vendor/linux/firmware/edid
+#list of edid/*.bin
+$(foreach t, $(patsubst $(I915_EDID_PATH)/%,%,$(wildcard $(I915_EDID_PATH)/*)) ,$(eval I915_FW += edid/$(t)) $(eval $(LOCAL_KERNEL) : $(PRODUCT_OUT)/vendor/firmware/edid/$(t)))
+
 _EXTRA_FW_ += $(I915_FW)
 
 AUTO_IN += $(TARGET_DEVICE_DIR)/{{_extra_dir}}/auto_hal.in
