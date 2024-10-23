@@ -1,0 +1,9 @@
+on property:persist.vendor.cpu.governor.performance=1
+    start init_setgovernor_sh
+
+service init_setgovernor_sh /vendor/bin/setgovernor.sh
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
